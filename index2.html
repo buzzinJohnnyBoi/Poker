@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script>
+	    var cards = [
+        "2♥", "3♥", "4♥", "5♥", "6♥", "7♥", "8♥", "9♥", "10♥", "J♥", "Q♥", "K♥", "A♥", 
+        "2♠", "3♠", "4♠", "5♠", "6♠", "7♠", "8♠", "9♠", "10♠", "J♠", "Q♠", "K♠", "A♠", 
+        "2♦", "3♦", "4♦", "5♦", "6♦", "7♦", "8♦", "9♦", "10♦", "J♦", "Q♦", "K♦", "A♦", 
+        "2♣", "3♣", "4♣", "5♣", "6♣", "7♣", "8♣", "9♣", "10♣", "J♣", "Q♣", "K♣", "A♣" 
+    ]
+
+    var cardsThatDontemty = [
+        "2♥", "3♥", "4♥", "5♥", "6♥", "7♥", "8♥", "9♥", "10♥", "J♥", "Q♥", "K♥", "A♥", 
+        "2♠", "3♠", "4♠", "5♠", "6♠", "7♠", "8♠", "9♠", "10♠", "J♠", "Q♠", "K♠", "A♠", 
+        "2♦", "3♦", "4♦", "5♦", "6♦", "7♦", "8♦", "9♦", "10♦", "J♦", "Q♦", "K♦", "A♦", 
+        "2♣", "3♣", "4♣", "5♣", "6♣", "7♣", "8♣", "9♣", "10♣", "J♣", "Q♣", "K♣", "A♣" 
+    ]
+
+	var hand = []
+	var RoyalFlush = false;
+	var i = 0;
+
+	while(!RoyalFlush) {
+    	deal();
+		if (Royal_flush(hand)) {RoyalFlush = true; console.log(i + " " + hand);}
+		else{i++;}
+	}
+
+    function deal() {
+    	hand = [];
+        for (var i = 0; i <= 4; i++) {
+            var randomNum = Math.floor(Math.random() * (cards.length - 1));
+            hand.push(cards[randomNum]); cards.splice(randomNum, 1); 
+        }
+        cards = [...cardsThatDontemty];
+
+    }
+	    function Royal_flush(hand) {
+        var perfect;
+        var straight = true;
+        while(!perfect) {
+            perfect = true;
+            for (var i = 0; i < hand.length - 1; i++) {
+                if (findvalue(hand, i) > findvalue(hand, i + 1)) {
+                    let placeholder = hand[i];
+                    hand[i] = hand[i + 1];
+                    hand[i + 1] = placeholder;
+                    perfect = false;
+                }
+            }
+        }
+
+        for (var i = findvalue(hand, 0); i < (hand.length + findvalue(hand, 0)); i++) {
+            if(findvalue(hand, i - findvalue(hand, 0)) == i) {
+
+            }
+            else {
+                straight = false;
+            }
+        }
+        if (straight == true) {if (findsuit(hand[0]) == findsuit(hand[1]) && findsuit(hand[0]) == findsuit(hand[2]) && findsuit(hand[0]) == findsuit(hand[3]) && findsuit(hand[0]) == findsuit(hand[4]) && findvalue(hand, 0) == 10) {return true;}}
+        return false;
+    }
+
+        function findsuit(value) {
+        if (value.includes("♣")) {return "♣";}
+        else if (value.includes("♥")) {return "♥";}
+        else if (value.includes("♦")) {return "♦";}
+        else if (value.includes("♠")) {return "♠";}
+        else {return 0;}
+    }
+
+    function findvalue(whichhand, i) {
+        if (whichhand[i].includes("J")) {return 11;}
+        else if (whichhand[i].includes("Q")) {return 12;}
+        else if (whichhand[i].includes("K")) {return 13;}
+        else if (whichhand[i].includes("A")) {return 14;}
+        else {return parseInt(whichhand[i]);}
+    }
+
+</script>
+</html>

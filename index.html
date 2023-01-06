@@ -1,0 +1,629 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Poker</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            padding: 0;
+            border-radius: 10px;
+            user-select: none;
+        }
+        card {
+            font-size: 20px;
+            padding: 20px 10px;
+            border: 2px solid black;
+            background-color: white;
+            color:black;
+            margin: 0px 3px 0px 3px;
+            display: inline-block;
+
+
+        }
+
+        cardback {
+            border: 2px solid black;
+            margin: 0px 3px 0px 3px;
+            display: inline-block;
+            background-image: url("card.png");
+            background-size: 100%;
+            width: 45px;
+            height: 65px;
+        }
+
+        cardback:hover {
+            transform: rotateY(180deg);
+        }
+
+        body {
+            background-color: gray;
+            color: white;
+        }
+
+        #h1 {
+            width: 250px;
+            height: 90px;
+            background-color: blue;
+            position: absolute;
+            top: 400px;
+            border-top:10px solid blue;
+            left: 450px;
+            text-align: center;
+        }
+
+        #h2 {
+            width: 250px;
+            height: 90px;
+            background-color: blue;
+            position: absolute;
+            top: 200px;
+            border-top:10px solid blue;
+            left: 900px;
+            text-align: center;
+        }
+
+        #h3 {
+            width: 250px;
+            height: 90px;
+            background-color: blue;
+            position: absolute;
+            top: 200px;
+            border-top:10px solid blue;
+            left: 0px;
+            text-align: center;
+        }
+
+        #h4 {
+            width: 250px;
+            height: 90px;
+            background-color: blue;
+            position: absolute;
+            top: 0px;
+            border-top:10px solid blue;
+            left: 450px;
+            text-align: center;
+        }
+
+        #h5 {
+            width: 200px;
+            height: 90px;
+            position: absolute;
+            top: 170px;
+            left: 450px;
+            text-align: center;
+        }
+
+        .flip-box {
+  background-color: transparent;
+  width: 45px;height: 65px;
+  perspective: 1000px;
+  display: inline-block;
+              margin: 0px 3px 0px 3px;
+}
+
+.flip-box-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border: 2px solid black;
+}
+
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-box-front {
+  background-color: white;
+  color: black;
+}
+
+.flip-box-back {
+  background-color: white;
+  color:black;
+ font-size: 20px;
+ line-height: 300%;
+  transform: rotateY(180deg);
+}
+
+button {
+    font-size: 20px;
+    padding: 20px;
+}
+
+#input2 {
+    font-size: 20px;
+    padding: 10px;
+    width: 90%;
+}
+
+
+    </style>
+</head>
+<body>
+
+
+
+    <div id="h1">
+        <p id="h1p">You: <chips id="c0"></chips> Chips</p>
+        <card></card> <card></card>
+        <br><br>
+            <input type="text" placeholder="amount" name="" id="input2">
+        <br><br>
+
+    <button onclick="Bet('The You ');">Bet</button>
+    <button onclick="Fold();">Fold</button>
+    </div>
+    <div id="h2">
+        <p id="h1p">Al Capone: <chips id="c1"></chips> Chips</p>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <img src="card.png" alt="Paris" style="width: 45px;height: 65px;">
+            </div>
+            <div class="flip-box-back">
+            
+            </div>
+          </div>
+        </div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <img src="card.png" alt="Paris" style="width: 45px;height: 65px;">
+            </div>
+            <div class="flip-box-back">
+            
+            </div>
+          </div>
+        </div>
+    </div>
+    <div id="h3">
+        <p id="h1p">Baby Face Nelson: <chips id="c2"></chips> Chips</p>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <img src="card.png" alt="Paris" style="width: 45px;height: 65px;">
+            </div>
+            <div class="flip-box-back">
+            
+            </div>
+          </div>
+        </div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <img src="card.png" alt="Paris" style="width: 45px;height: 65px;">
+            </div>
+            <div class="flip-box-back">
+            
+            </div>
+          </div>
+        </div>
+    </div>
+    <div id="h4">
+        <p id="h1p">Jesse James: <chips id="c3"></chips> Chips </p>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <img src="card.png" alt="Paris" style="width: 45px;height: 65px;">
+            </div>
+            <div class="flip-box-back">
+            
+            </div>
+          </div>
+        </div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <img src="card.png" alt="Paris" style="width: 45px;height: 65px;">
+            </div>
+            <div class="flip-box-back">
+            
+            </div>
+          </div>
+        </div>
+
+    </div>
+    <div id="h5">
+         <p id="h1p">Pot: <chips id="c5"></chips> Chips </p>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <img src="card.png" alt="Paris" style="width: 45px;height: 65px;">
+            </div>
+            <div class="flip-box-back">
+            
+            </div>
+          </div>
+        </div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <img src="card.png" alt="Paris" style="width: 45px;height: 65px;">
+            </div>
+            <div class="flip-box-back">
+            
+            </div>
+          </div>
+        </div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <img src="card.png" alt="Paris" style="width: 45px;height: 65px;">
+            </div>
+            <div class="flip-box-back">
+            
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <img src="card.png" alt="Paris" style="width: 45px;height: 65px;">
+            </div>
+            <div class="flip-box-back">
+            
+            </div>
+          </div>
+        </div>
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <img src="card.png" alt="Paris" style="width: 45px;height: 65px;">
+            </div>
+            <div class="flip-box-back">
+            
+            </div>
+          </div>
+        </div>
+    </div>    
+<script src="Console.js"></script>
+<script src="untie.js"></script>
+<script src="whatyahave.js"></script>
+</body>
+<script>
+var theCards = document.querySelectorAll("card");
+var flipBox = document.querySelectorAll(".flip-box-back");
+var flipBoxInner = document.querySelectorAll(".flip-box-inner");
+for(var card = 0; card < theCards.length; card++)
+{  
+    theCards[card].style.backgroundColor = "white";
+}
+    var cards = [
+        "2♥", "3♥", "4♥", "5♥", "6♥", "7♥", "8♥", "9♥", "10♥", "J♥", "Q♥", "K♥", "A♥", 
+        "2♠", "3♠", "4♠", "5♠", "6♠", "7♠", "8♠", "9♠", "10♠", "J♠", "Q♠", "K♠", "A♠", 
+        "2♦", "3♦", "4♦", "5♦", "6♦", "7♦", "8♦", "9♦", "10♦", "J♦", "Q♦", "K♦", "A♦", 
+        "2♣", "3♣", "4♣", "5♣", "6♣", "7♣", "8♣", "9♣", "10♣", "J♣", "Q♣", "K♣", "A♣" 
+    ]
+
+    var cardsThatDontemty = [
+        "2♥", "3♥", "4♥", "5♥", "6♥", "7♥", "8♥", "9♥", "10♥", "J♥", "Q♥", "K♥", "A♥", 
+        "2♠", "3♠", "4♠", "5♠", "6♠", "7♠", "8♠", "9♠", "10♠", "J♠", "Q♠", "K♠", "A♠", 
+        "2♦", "3♦", "4♦", "5♦", "6♦", "7♦", "8♦", "9♦", "10♦", "J♦", "Q♦", "K♦", "A♦", 
+        "2♣", "3♣", "4♣", "5♣", "6♣", "7♣", "8♣", "9♣", "10♣", "J♣", "Q♣", "K♣", "A♣" 
+    ]
+
+    var hand1 = []
+    var hand2 = []
+    var hand3 = []
+    var hand4 = []
+    var middleCards = []
+    var speed = 500;
+    var p1score = 1000;
+    var p2score = 1000;
+    var p3score = 1000;
+    var p4score = 1000;
+    var p1scorer = 0;
+    var p2scorer = 0;
+    var p3scorer = 0;
+    var p4scorer = 0;
+    var p1bet = 0;
+    var p2bet = 0;
+    var p3bet = 0;
+    var p4bet = 0;
+    var colorHD = "red";
+    var colorCS = "black";
+    var numplayers = 4;
+    var winner;
+    var leadBet = 0;    
+    var whichplayersturn = 1;
+
+    function whichplayertoplay() {
+        if (whichplayersturn == 1) {whichplayersturn = 2;}
+        else if (whichplayersturn == 2) {whichplayersturn = 4;}
+        else if (whichplayersturn == 4) {whichplayersturn = 3;}
+        else if (whichplayersturn == 3) {whichplayersturn = 1;}
+    }
+
+    function whatToplaybot(bot) {
+        
+    }
+
+    function shouldbet(hand) {
+        return 10;
+    }
+
+    function shouldcall(hand) {
+        return true;
+    }
+
+    deal();
+    upadateScore();
+
+
+
+
+    function deal() {
+        var num14 = 0;
+        for (var i = 0; i <= numplayers * 2 - 1; i++) {
+        var randomNum = Math.floor(Math.random() * (cards.length - 1));
+
+            if (num14 == 0) {hand1.push(cards[randomNum]); cards.splice(randomNum, 1); }
+            else if (num14 == 1) {hand2.push(cards[randomNum]); cards.splice(randomNum, 1);}
+            else if (num14 == 2) {hand3.push(cards[randomNum]); cards.splice(randomNum, 1);}
+            else if (num14 == 3) {hand4.push(cards[randomNum]); cards.splice(randomNum, 1);}
+
+            num14++;
+            if(num14 == 4) {num14 = 0;}
+        }
+        for (var i = 0; i <= 4; i++) {
+            var randomNum = Math.floor(Math.random() * (cards.length - 1));
+            middleCards.push(cards[randomNum]); cards.splice(randomNum, 1); 
+        }
+        cards = [...cardsThatDontemty];
+        display(hand4, 0);
+        display2(hand3, 0);
+        display2(hand2, 2);
+        display2(hand1, 4);
+        // middleCards = ["10♥", "9♥", "J♥", "Q♥", "K♥"];
+        display2(middleCards, 6);
+    }
+
+
+
+    function display(whichhand, pluswhat) {
+        for (let i = whichhand.length - 1; i >= 0; i--) {
+            if(whichhand[i].includes("♥") || whichhand[i].includes("♦")) {
+                theCards[i + pluswhat].style.color = colorHD;
+            }  
+            else {
+                theCards[i + pluswhat].style.color = colorCS;
+            }
+            theCards[i + pluswhat].innerHTML = whichhand[i];
+        }
+    }
+
+   function display2(whichhand, pluswhat) {
+        for (let i = whichhand.length - 1; i >= 0; i--) {
+            if(whichhand[i].includes("♥") || whichhand[i].includes("♦")) {
+                flipBox[i + pluswhat].style.color = colorHD;
+            }  
+            else {
+                flipBox[i + pluswhat].style.color = colorCS;
+            }
+            flipBox[i + pluswhat].innerHTML = whichhand[i];
+        }
+    }
+    // document.querySelector(".flip-box-inner").style.transform = "rotateY(180deg)";
+    function upadateScore() {
+        document.querySelector("#c0").innerHTML = p4score;
+        document.querySelector("#c1").innerHTML = p3score;
+        document.querySelector("#c2").innerHTML = p2score;
+        document.querySelector("#c3").innerHTML = p1score;
+        document.querySelector("#c5").innerHTML = p4scorer + p3scorer + p2scorer + p1scorer;
+    }
+
+    function flip(card) {
+        if (card == "all") {
+            for (var i = 0; i < flipBoxInner.length; i++) {
+                flipBoxInner[i].style.transform = "rotateY(180deg)";
+            }
+        }
+        else {
+            flipBoxInner[card].style.transform = "rotateY(180deg)";
+        }
+    }
+
+    function Bet(Person) {
+        var amount = Math.abs(parseInt(document.querySelector("#input2").value));
+        if (!isNaN(amount)) {
+            if (amount <= p4score) {
+                MyConsole.Log(Person + "has bet $" + amount);
+                p4scorer += amount;
+                p4score -= amount;
+                upadateScore();
+            }
+        }
+        else {
+            MyConsole.Log("Try again");
+        }
+        document.querySelector("#input2").value = "";
+    }
+
+    function Fold() {
+        console.log("hello");
+    }
+    function TheWinneris() {
+        var arr = [];
+        arr.push(whoWon(hand1));
+        arr.push(whoWon(hand2));
+        arr.push(whoWon(hand3));
+        arr.push(whoWon(hand4));
+        var max = 0;
+        var winingarr = []
+        var tiedhands = [arr[0], 0, 0, 0]
+        var tie = []
+        var winner;
+        var lastwiningarr = [];
+        var tie123 = false;
+
+        for (var i = 0; i < arr.length; i++) {
+            if(arr[i][0] >= max) {
+                if (arr[i][0] == max) {
+                    winingarr = Untie(arr[i], winingarr, max, true);
+                    if (winingarr == "tie") {
+                        winingarr = arr[i];
+                        tiedhands[i] = arr[i];
+                    }
+                    else {
+                        max = winingarr[0];
+                        if (lastwiningarr != winingarr) {
+                            if (i == 0) {winner = "p1";}
+                            if (i == 1) {winner = "p2";}
+                            if (i == 2) {winner = "p3"; tiedhands = [arr[0], 0, 0, 0]}
+                            if (i == 3) {winner = "p4"; tiedhands = [arr[0], 0, 0, 0]}
+                        }
+                    }
+                }
+                else {
+                    max = arr[i][0];
+                    winingarr = arr[i];
+                    if (i == 0) {winner = "p1";}
+                    if (i == 1) {winner = "p2";}
+                    if (i == 2) {winner = "p3"; tiedhands = [arr[0], 0, 0, 0]}
+                    if (i == 3) {winner = "p4"; tiedhands = [arr[0], 0, 0, 0]}
+                }
+                lastwiningarr = winingarr;
+            }
+        }
+
+        console.log(tiedhands);
+        if (tiedhands[1] != 0 || tiedhands[2] != 0 || tiedhands[3] != 0) {
+            if (tiedhands[0][0] == max && Untie(tiedhands[0], winingarr, max, true) == "tie") {
+                console.log(Untie(tiedhands[0], winingarr, max, true));
+                tie.push("p1");
+                if (arr[1][0] == max && Untie(arr[1], winingarr, max, true) == "tie") {tie.push("p2"); console.log("we got a tie"); tie123 = true;}
+                if (arr[2][0] == max && Untie(arr[2], winingarr, max, true) == "tie") {tie.push("p3"); console.log("we got a tie"); tie123 = true;}
+                if (arr[3][0] == max && Untie(arr[3], winingarr, max, true) == "tie") {tie.push("p4"); console.log("we got a tie"); tie123 = true;}
+                if (tie123) {return tie;}
+            }
+
+            else if (tiedhands[1][0] == max && Untie(tiedhands[1], winingarr, max, true) == "tie") {
+                tie.push("p2");
+                if (arr[0][0] == max && Untie(arr[0], winingarr, max, true) == "tie") {tie.push("p1"); console.log("we got a tie"); tie123 = true;}
+                if (arr[2][0] == max && Untie(arr[2], winingarr, max, true) == "tie") {tie.push("p3"); console.log("we got a tie"); tie123 = true;}
+                if (arr[3][0] == max && Untie(arr[3], winingarr, max, true) == "tie") {tie.push("p4"); console.log("we got a tie"); tie123 = true;}
+                if (tie123) {return tie;}
+            }
+
+            else if (tiedhands[2][0] == max && Untie(tiedhands[2], winingarr, max, true) == "tie") {
+                tie.push("p3");
+                if (arr[0][0] == max && Untie(arr[0], winingarr, max, true) == "tie") {tie.push("p1"); console.log("we got a tie"); tie123 = true;}
+                if (arr[1][0] == max && Untie(arr[1], winingarr, max, true) == "tie") {tie.push("p2"); console.log("we got a tie"); tie123 = true;}
+                if (arr[3][0] == max && Untie(arr[3], winingarr, max, true) == "tie") {tie.push("p4"); console.log("we got a tie"); tie123 = true;}
+                if (tie123) {return tie;}
+
+            }  
+            else if (tiedhands[3][0] == max && Untie(tiedhands[3], winingarr, max, true) == "tie") {
+                tie.push("p4");
+                if (arr[0][0] == max && Untie(arr[0], winingarr, max, true) == "tie") {tie.push("p1"); console.log("we got a tie"); tie123 = true;}
+                if (arr[1][0] == max && Untie(arr[1], winingarr, max, true) == "tie") {tie.push("p2"); console.log("we got a tie"); tie123 = true;}
+                if (arr[2][0] == max && Untie(arr[2], winingarr, max, true) == "tie") {tie.push("p3"); console.log("we got a tie"); tie123 = true;}
+                if (tie123) {return tie;}
+
+            }
+        }
+
+        return [max, winner];
+    }
+
+    function whoWon(hand) {
+        var arr = []
+        arr.push(whatYouHave([hand[0], hand[1], middleCards[0], middleCards[1], middleCards[2]]));
+        arr.push(whatYouHave([hand[0], hand[1], middleCards[0], middleCards[1], middleCards[3]]));
+        arr.push(whatYouHave([hand[0], hand[1], middleCards[0], middleCards[1], middleCards[4]]));
+
+        arr.push(whatYouHave([hand[0], hand[1], middleCards[0], middleCards[2], middleCards[3]]));
+        arr.push(whatYouHave([hand[0], hand[1], middleCards[0], middleCards[2], middleCards[4]]));
+
+        arr.push(whatYouHave([hand[0], hand[1], middleCards[0], middleCards[3], middleCards[4]]));
+
+        arr.push(whatYouHave([hand[0], hand[1], middleCards[1], middleCards[2], middleCards[3]]));
+        arr.push(whatYouHave([hand[0], hand[1], middleCards[1], middleCards[2], middleCards[4]]));
+
+        arr.push(whatYouHave([hand[0], hand[1], middleCards[1], middleCards[3], middleCards[4]]));
+
+        arr.push(whatYouHave([hand[0], hand[1], middleCards[2], middleCards[3], middleCards[4]]));
+
+        arr.push(whatYouHave([hand[0], middleCards[0], middleCards[1], middleCards[2], middleCards[3]]));
+        arr.push(whatYouHave([hand[0], middleCards[0], middleCards[1], middleCards[2], middleCards[4]]));
+        arr.push(whatYouHave([hand[0], middleCards[0], middleCards[1], middleCards[3], middleCards[4]]));
+        arr.push(whatYouHave([hand[0], middleCards[0], middleCards[2], middleCards[3], middleCards[4]]));
+        arr.push(whatYouHave([hand[0], middleCards[1], middleCards[2], middleCards[3], middleCards[4]]));
+
+        arr.push(whatYouHave([hand[1], middleCards[0], middleCards[1], middleCards[2], middleCards[3]]));
+        arr.push(whatYouHave([hand[1], middleCards[0], middleCards[1], middleCards[2], middleCards[4]]));
+        arr.push(whatYouHave([hand[1], middleCards[0], middleCards[1], middleCards[3], middleCards[4]]));
+        arr.push(whatYouHave([hand[1], middleCards[0], middleCards[2], middleCards[3], middleCards[4]]));
+        arr.push(whatYouHave([hand[1], middleCards[1], middleCards[2], middleCards[3], middleCards[4]]));
+
+        arr.push(whatYouHave([middleCards[0], middleCards[1], middleCards[2], middleCards[3], middleCards[4]]));
+
+        var max = 0;
+        var winingarr = [];
+        for (var i = 0; i < arr.length; i++) {
+            if(arr[i][0] >= max) {
+                if (arr[i][0] == max) {
+                    winingarr = Untie(arr[i], winingarr, max, false);
+                    max = winingarr[0];
+                }
+                else {
+                    max = arr[i][0];
+                    winingarr = arr[i];
+                }
+            }
+        }
+        return winingarr;
+    }
+
+
+
+    function findsuit(value) {
+        if (value.includes("♣")) {return "♣";}
+        else if (value.includes("♥")) {return "♥";}
+        else if (value.includes("♦")) {return "♦";}
+        else if (value.includes("♠")) {return "♠";}
+        else {return 0;}
+    }
+
+    function findvalue(whichhand, i) {
+        if (whichhand[i].includes("J")) {return 11;}
+        else if (whichhand[i].includes("Q")) {return 12;}
+        else if (whichhand[i].includes("K")) {return 13;}
+        else if (whichhand[i].includes("A")) {return 14;}
+        else {return parseInt(whichhand[i]);}
+    }
+
+    function HighestTolowest(arr) {
+        var perfect;
+        while(!perfect) {
+            perfect = true;
+            for (var i = 0; i < arr.length - 1; i++) {
+                if (findvalue(arr, i) < findvalue(arr, i + 1)) {
+                    let placeholder = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = placeholder;
+                    perfect = false;
+                }
+            }
+        }
+        return arr;
+    }
+
+
+
+flip("all");
+console.log(TheWinneris());
+</script>
+</html>
